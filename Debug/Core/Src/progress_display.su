@@ -1,5 +1,5 @@
-progress_display.c:13:6:clear_progress	8	static
-progress_display.c:21:6:update_progress	32	static
-progress_display.c:28:6:update_up_to	16	static
-progress_display.c:34:6:run_progress_bar	16	static
-progress_display.c:42:6:dupa	24	static
+progress_display.c:13:6:clear_progress	4	static
+progress_display.c:20:6:update_progress	32	static
+progress_display.c:27:6:update_up_to	16	static
+progress_display.c:33:6:run_progress_bar	16	static
+progress_display.c:41:6:dupa	24	static

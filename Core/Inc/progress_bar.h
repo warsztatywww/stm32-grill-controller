@@ -9,12 +9,13 @@
 #define ON_VAL 67
 #define OFF_VAL 34
 
-typedef unsigned char Color[3];
+typedef uint32_t Color[3];
 
 extern Color COL_OFF;
 extern Color COL_BLUE;
 extern Color COL_RED;
 extern Color COL_GREEN;
+extern Color COL_YELLOW;
 
 void print_colors();
 

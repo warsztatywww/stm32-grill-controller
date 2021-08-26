@@ -120,11 +120,11 @@ int main(void)
 
   enum State state = enterPass;
   tosterTimerBlinkMode(1);
-  int password = 1235;
+  int password = 1236;
   int cookingTime = 0;
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
 
-  set_color_all(COL_OFF);
+  set_color_all(COL_YELLOW);
   update_bar();
 
   /* USER CODE END 2 */
@@ -160,9 +160,11 @@ int main(void)
 
 			  cookingTime = getTime();
 			  tosterTimerStart();
+			  clear_bar();
 			  run_progress_bar(cookingTime);
 		  } else if(state == cookingEnd) {
 			  state = enterTime;
+			  stop_shift_animation();
 			  resetTimer();
 		  }
 	  }
@@ -170,8 +172,7 @@ int main(void)
 		  state = cookingEnd;
 		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
 		  clear_progress();
-		  update_bar();
-		  blink(10, COL_GREEN);
+		  initialize_shift_animation(100);
 		  resetKeypad();
 	  }
 

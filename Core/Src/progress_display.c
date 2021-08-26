@@ -12,11 +12,10 @@ int getTime();
 
 void clear_progress() {
 	current_bar_pos = 0;
-	clear_bar();
 }
 
 Color COL_PROGRESS;
-Color COL_PROGRESS_HSL = {100, 255, 10};
+Color COL_PROGRESS_HSL = {0, 255, 10};
 
 void update_progress() {
 	COL_PROGRESS_HSL[0] += 6;

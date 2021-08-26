@@ -14,9 +14,10 @@ void initialize_bar() {
 }
 
 Color COL_OFF = {0, 0, 0};
-Color COL_BLUE = {0, 0, 15};
-Color COL_RED = {0, 15, 0};
-Color COL_GREEN = {15, 0, 0};
+Color COL_BLUE = {0, 0, 115};
+Color COL_RED = {0, 115, 0};
+Color COL_GREEN = {115, 0, 0};
+Color COL_YELLOW = {50, 115, 0};
 
 void print_colors() {
 	for (int i = 0; i < FRAME_SIZE; ++i) {
@@ -27,7 +28,7 @@ void print_colors() {
 
 void write_binary(uint32_t * pos, char val) {
 	for (int i = 0; i < 8; ++i) {
-		if (val >> i) pos[7 - i] = ON_VAL;
+		if ((1 << i) & val) pos[7 - i] = ON_VAL;
 		else pos[7 - i] = OFF_VAL;
 	}
 }
@@ -63,4 +64,43 @@ void blink(int counts, Color color) {
 		update_bar();
 		HAL_Delay(250);
 	}
+}
+
+struct {
+	int frames_displayed;
+	int starting_time;
+	int time_per_frame;
+	int is_running;
+} shift_animation;
+
+void initialize_shift_animation(int time_per_frame) {
+	shift_animation.is_running = 1;
+	shift_animation.frames_displayed = 0;
+	shift_animation.starting_time = getTime();
+	shift_animation.time_per_frame = time_per_frame;
+}
+
+void is_shift_initialized() {
+	return shift_animation.is_running;
+}
+
+void stop_shift_animation() {
+	return shift_animation.is_running = 0;
+}
+
+void update_shift_animation() {
+	int passed_time = getTime() - shift_animation.starting_time;
+	if (passed_time > shift_animation.time_per_frame * shift_animation.frames_displayed) {
+		shift_bar(1);
+		update_bar();
+		shift_animation.frames_displayed++;
+	}
+}
+
+void shift_bar(int step) {
+	uint32_t* temp;
+	for(int i=0; i<DIODES_CNT*SLOTS_PER_DIODE; ++i) {
+		temp[(i + step * SLOTS_PER_DIODE) % DIODES_CNT*SLOTS_PER_DIODE] = progress_bar.diodes[i];
+	}
+	memcpy(progress_bar.diodes, temp, DIODES_CNT*SLOTS_PER_DIODE);
 }
