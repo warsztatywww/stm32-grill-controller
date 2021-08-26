@@ -1,0 +1,7 @@
+keypad.c:12:6:scan	16	static
+keypad.c:35:6:updateKeypad	16	static
+keypad.c:54:6:resetKeypad	4	static
+keypad.c:59:5:checkReadiness	4	static
+keypad.c:68:5:checkNumber	4	static
+keypad.c:72:5:checkLetter	4	static
+keypad.c:76:6:keypadEnterTime	16	static

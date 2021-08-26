@@ -1,0 +1,10 @@
+toster_display.c:10:6:tosterDisplayInit	16	static
+toster_display.c:15:6:resetTimer	4	static
+toster_display.c:21:6:tosterSetTime	16	static
+toster_display.c:25:5:tosterTimerHasFinished	4	static
+toster_display.c:29:5:getTime	4	static
+toster_display.c:33:6:tosterTimerStart	4	static
+toster_display.c:37:6:tosterTimerBlinkMode	16	static
+toster_display.c:41:6:tosterDisplayTime	32	static
+toster_display.c:55:6:tosterDisplayNumber	16	static
+toster_display.c:62:6:HAL_TIM_PeriodElapsedCallback	16	static
